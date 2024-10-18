@@ -21,7 +21,7 @@ class EzCurlBodyFormData extends EzCurlBody
     public function __construct()
     {
         parent::__construct();
-        $this->boundary = "--------------------------" . EzString::getRandom(20);
+        $this->boundary = "--------------------------" . EzStringUtils::getRandomString(20);
     }
 
     /**

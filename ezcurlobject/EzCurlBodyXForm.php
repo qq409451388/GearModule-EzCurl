@@ -15,6 +15,9 @@ class EzCurlBodyXForm extends EzCurlBody
 
     public function toString()
     {
+        foreach ($this->data as &$value) {
+            $value = urlencode($value);
+        }
         return http_build_query($this->data);
     }
 }

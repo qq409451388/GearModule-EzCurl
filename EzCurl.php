@@ -108,7 +108,7 @@ class EzCurl
                 $this->setHeader(["Content-Type: application/json;charset=utf-8"]);
                 break;
             case self::POSTTYPE_FORM_DATA:
-                $key = "--------------------------" . EzString::getRandom(20);
+                $key = "--------------------------" . EzStringUtils::getRandomString(20);
                 $body = $this->buildBodyForFormData($data, $key);
                 $this->setHeader(["Content-Type:multipart/form-data;boundary=" . $key]);
                 break;
