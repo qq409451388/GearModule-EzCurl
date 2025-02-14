@@ -34,6 +34,8 @@ class EzCurlM
 
     public function exec()
     {
+        $t1 = microtime(true);
+
         do {
             if (($status = curl_multi_exec($this->chs, $active)) != CURLM_CALL_MULTI_PERFORM) {
                 //如果没有准备就绪，就再次调用curl_multi_exec
@@ -47,7 +49,8 @@ class EzCurlM
                     $url = $instance->getUrl();
                     $error = curl_error($ch);
                     $result = curl_multi_getcontent($ch);
-                    $rtn = compact('error', 'result', 'url');
+                    $time = microtime(true) - $t1;
+                    $rtn = compact('error', 'result', 'url', 'time');
                     $response[$instance->getAlias()] = $rtn;
                     $this->close($ch);
                     //如果仍然有未处理完毕的句柄，那么就select
